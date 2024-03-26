@@ -1,4 +1,3 @@
-/conexao/
-/filter/
-/model/
+/dao/
 /servlets/
+/conexao/

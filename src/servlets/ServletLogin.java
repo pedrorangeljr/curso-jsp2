@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DaoLogin;
 import model.ModelLogin;
 
 
 @WebServlet(urlPatterns = { "/principal/ServletLogin", "/ServletLogin" })
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
+	private DaoLogin daoLogin = new DaoLogin();
     
     public ServletLogin() {
         super();
@@ -42,7 +44,7 @@ public class ServletLogin extends HttpServlet {
 				modelLogin.setEmail(email);
 				modelLogin.setSenha(senha);
 				
-				if(modelLogin.getEmail().equalsIgnoreCase("admin@gmail.com") && modelLogin.getSenha().equalsIgnoreCase("admin")) {
+				if(daoLogin.validarAutenticacao(modelLogin)) {
 					
 					request.getSession().setAttribute("usuario", modelLogin.getEmail());
 					
