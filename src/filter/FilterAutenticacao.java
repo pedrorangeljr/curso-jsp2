@@ -60,13 +60,17 @@ public class FilterAutenticacao implements Filter {
 
 				chain.doFilter(request, response);
 			}
-			
-			/*Deu tudo certo commita as alterações no banco de dados*/
+
+			/* Deu tudo certo commita as alterações no banco de dados */
 			connection.commit();
 
 		} catch (Exception e) {
 
 			e.printStackTrace();
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+			request.setAttribute("msg", e.getMessage());
+			dispatcher.forward(request, response);
 
 			try {
 

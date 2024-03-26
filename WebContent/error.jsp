@@ -7,6 +7,8 @@
 <title>error</title>
 </head>
 <body>
-
+  <h1>Mensagem de erro entre em contato com equipe de suporte do sistema</h1>
+  <br/>
+  <h3>${msg }</h3>
 </body>
 </html>
