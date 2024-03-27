@@ -22,9 +22,9 @@
             </a>
           </li>
           <li>
-            <a href="./icons.html">
+            <a href="<%= request.getContextPath() %>/principal/usuario.jsp">
               <i class="nc-icon nc-diamond"></i>
-              <p>Icons</p>
+              <p>Cadastro de Usuários</p>
             </a>
           </li>
           <li>
