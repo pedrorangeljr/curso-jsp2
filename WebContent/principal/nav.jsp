@@ -49,7 +49,7 @@
 							</a>
 								<div class="dropdown-menu dropdown-menu-right"
 									aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item" href="#">Action</a> <a
+									<a class="dropdown-item" href="ServletLogin?acao=logout">Logout</a> <a
 										class="dropdown-item" href="#">Another action</a> <a
 										class="dropdown-item" href="#">Something else here</a>
 								</div></li>
