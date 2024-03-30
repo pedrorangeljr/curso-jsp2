@@ -7,7 +7,7 @@
           <!-- <p>CT</p> -->
         </a>
         <a href="" class="simple-text logo-normal">
-          Creative Tim
+          <%= session.getAttribute("usuario") %>
           <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
@@ -23,7 +23,7 @@
           </li>
           <li>
             <a href="<%= request.getContextPath() %>/principal/usuario.jsp">
-              <i class="nc-icon nc-diamond"></i>
+              <i class="nc-icon nc-single-02"></i>
               <p>Cadastro de Usuários</p>
             </a>
           </li>
