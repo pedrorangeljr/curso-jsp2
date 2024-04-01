@@ -16,7 +16,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="./dashboard.html">
+            <a href="<%= request.getContextPath() %>/principal/home.jsp">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>

@@ -28,32 +28,34 @@
 			 <h2>Cadastro de Usuários</h2>
 			 
 			 <div class="card-body">
-                <form>
+			 
+                <form action="<%= request.getContextPath() %>/ServletUsuario" method="post">
+                
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>ID</label>
-                        <input type="text" class="form-control" disabled="" placeholder="">
+                        <input type="text" class="form-control" name="id" id="id" readonly="readonly" placeholder="">
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control" placeholder="nome" name="nome" id="nome">
+                        <input type="text" class="form-control" placeholder="nome" name="nome" id="nome" required="required">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="email" required="required" autocomplete="off">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="Chet">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" placeholder="senha" name="senha" id="senha" required="required" autocomplete="off">
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
@@ -94,13 +96,16 @@
               
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                      <button type="submit" class="btn btn-primary btn-round">cadastrar</button>
+                    <button type="submit" class="btn btn-primary btn-round">Novo</button>
+                      <button type="submit" class="btn btn-success btn-round">cadastrar</button>
                       <button type="submit" class="btn btn-warning btn-round">Editar</button>
                       <button type="button" class="btn btn-danger btn-round">Deletar</button>
                       
                     </div>
                   </div>
+                  
                 </form>
+                
               </div>
 			
 			
