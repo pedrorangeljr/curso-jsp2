@@ -44,8 +44,9 @@ public class ServletUsuario extends HttpServlet {
 			modelLogin.setEmail(email);
 			modelLogin.setSenha(senha);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("principal/usuario.jsp");
-			dispatcher.forward(request, response);
+			request.setAttribute("modelLogin", modelLogin);
+			
+			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			
 		}catch(Exception e) {
 			

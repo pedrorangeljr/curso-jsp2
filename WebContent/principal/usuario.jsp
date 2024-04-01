@@ -35,19 +35,19 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>ID</label>
-                        <input type="text" class="form-control" name="id" id="id" readonly="readonly" placeholder="">
+                        <input type="text" class="form-control" name="id" id="id" readonly="readonly" placeholder="" value="${modelLogin.id }">
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control" placeholder="nome" name="nome" id="nome" required="required">
+                        <input type="text" class="form-control" placeholder="nome" name="nome" id="nome" required="required" value="${modelLogin.nome }">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" id="email" required="required" autocomplete="off">
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="email" required="required" autocomplete="off" value="${modelLogin.email }">
                       </div>
                     </div>
                   </div>
@@ -55,7 +55,7 @@
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Senha</label>
-                        <input type="password" class="form-control" placeholder="senha" name="senha" id="senha" required="required" autocomplete="off">
+                        <input type="password" class="form-control" placeholder="senha" name="senha" id="senha" required="required" autocomplete="off" value="${modelLogin.senha }">
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
