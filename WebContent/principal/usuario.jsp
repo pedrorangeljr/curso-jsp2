@@ -36,7 +36,7 @@
 							<div class="col-md-5 pr-1">
 								<div class="form-group">
 									<label>ID</label> <input type="text" class="form-control"
-										name="id" id="id" readonly="readonly" placeholder=""
+										name="id" id="id"  placeholder=""
 										value="${modelLogin.id }">
 								</div>
 							</div>
@@ -68,7 +68,7 @@
 							<div class="col-md-6 pl-1">
 								<div class="form-group">
 									<label>Last Name</label> <input type="text"
-										class="form-control" placeholder="Last Name" value="Faker">
+										class="form-control" placeholder="Last Name" >
 								</div>
 							</div>
 						</div>
@@ -76,7 +76,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Address</label> <input type="text" class="form-control"
-										placeholder="Home Address" value="Melbourne, Australia">
+										placeholder="Home Address">
 								</div>
 							</div>
 						</div>
@@ -84,13 +84,13 @@
 							<div class="col-md-4 pr-1">
 								<div class="form-group">
 									<label>City</label> <input type="text" class="form-control"
-										placeholder="City" value="Melbourne">
+										placeholder="City" >
 								</div>
 							</div>
 							<div class="col-md-4 px-1">
 								<div class="form-group">
 									<label>Country</label> <input type="text" class="form-control"
-										placeholder="Country" value="Australia">
+										placeholder="Country" >
 								</div>
 							</div>
 							<div class="col-md-4 pl-1">

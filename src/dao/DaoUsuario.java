@@ -21,6 +21,8 @@ public class DaoUsuario {
 	public static void gravarUsuario(ModelLogin modelLogin) {
 
 		try {
+			
+			if(modelLogin.eNovo()) {
 
 			String sql = "INSERT INTO \"modelLogin\"(email,senha,nome)Values(?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
@@ -31,6 +33,19 @@ public class DaoUsuario {
 			insert.execute();
 
 			connection.commit();
+			
+			} else {
+				
+				String sql = "UPDATE \"modelLogin\" SET email = ?, senha = ?, nome = ? WHERE id = "+modelLogin.getId()+"";
+				PreparedStatement update = connection.prepareStatement(sql);
+				
+				update.setString(1, modelLogin.getEmail());
+				update.setString(2, modelLogin.getSenha());
+				update.setString(3, modelLogin.getNome());
+				update.executeUpdate();
+				
+				connection.commit();
+			}
 
 		} catch (Exception e) {
 
@@ -38,6 +53,7 @@ public class DaoUsuario {
 		}
 	}
 
+	/*Não deixa gravar usuario com mesmo login*/
 	public boolean validaLogin(String email) throws Exception {
 
 		String sql = "SELECT COUNT(1) > 0 as existe FROM \"modelLogin\" WHERE upper(email) = upper('" + email + "')";
