@@ -38,7 +38,7 @@ public class DaoUsuario {
 
 		ModelLogin modelLogin = new ModelLogin();
 
-		String sql = "SELECT * FROM modelLogin WHERE upper(email) = upper('"+email+"')";
+		String sql = "SELECT * FROM modelLogin WHERE upper(email) = upper('" + email + "')";
 		PreparedStatement select = connection.prepareStatement(sql);
 
 		ResultSet resultado = select.executeQuery();
@@ -53,6 +53,19 @@ public class DaoUsuario {
 		}
 
 		return modelLogin;
+	}
+
+	public boolean validarLogin(String login) throws Exception {
+
+		String sql = "SELECT COUNT(1) > 0 AS EXISTE FROM modelLogin WHERE upper(email) = upper('" + login + "')";
+		PreparedStatement validar = connection.prepareStatement(sql);
+
+		ResultSet resultado = validar.executeQuery();
+
+		resultado.next();
+
+		return resultado.getBoolean("EXISTE");
+
 	}
 
 }

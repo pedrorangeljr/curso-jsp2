@@ -45,7 +45,15 @@ public class ServletUsuario extends HttpServlet {
 			modelLogin.setEmail(email);
 			modelLogin.setSenha(senha);
 
-			modelLogin = daoUsuario.gravarUsuario(modelLogin);
+			if(daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
+				
+				msg = "Já existe usuário com o mesmo login, informe outro login";
+				
+			}else {
+				
+				modelLogin = daoUsuario.gravarUsuario(modelLogin);
+			}
+			
 
 			request.setAttribute("msg", msg);
 			request.setAttribute("modelLogin", modelLogin);
