@@ -36,7 +36,7 @@
 							<div class="col-md-5 pr-1">
 								<div class="form-group">
 									<label>ID</label> <input type="text" class="form-control"
-										name="id" id="id"  placeholder=""
+										name="id" id="id"  placeholder="" readonly="readonly"
 										value="${modelLogin.id }">
 								</div>
 							</div>

@@ -18,7 +18,7 @@ public class DaoLogin {
 
 	public  boolean validarAutenticacao(ModelLogin modelLogin) throws Exception {
 		
-		String sql = "select * from \"modelLogin\" where upper(email) = upper(?) and upper(senha) = upper(?) ";
+		String sql = "select * from modelLogin where upper(email) = upper(?) and upper(senha) = upper(?) ";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, modelLogin.getEmail());
 		statement.setString(2, modelLogin.getSenha());

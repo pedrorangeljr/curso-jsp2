@@ -31,7 +31,7 @@ public class ServletUsuario extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			
+
 			String msg = "Operação Realizada com Sucesso!";
 
 			String id = request.getParameter("id");
@@ -45,14 +45,7 @@ public class ServletUsuario extends HttpServlet {
 			modelLogin.setEmail(email);
 			modelLogin.setSenha(senha);
 
-			if (daoUsuario.validaLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
-
-				msg = "Já existe usuário com mesmo email, informe outro email";
-				
-			}else {
-				
-				daoUsuario.gravarUsuario(modelLogin);
-			}
+			modelLogin = daoUsuario.gravarUsuario(modelLogin);
 
 			request.setAttribute("msg", msg);
 			request.setAttribute("modelLogin", modelLogin);

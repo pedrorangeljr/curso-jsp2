@@ -7,8 +7,8 @@ import java.sql.DriverManager;
 
 public class SingleConnection {
 	
-	private static String url = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";
-	private static String user = "postgres";
+	private static String url = "jdbc:mysql://localhost:3306/cursojsp?autoReconnect=true";
+	private static String user = "admin";
 	private static String password = "admin";
 	private static Connection connection = null;
 	
@@ -28,7 +28,7 @@ public class SingleConnection {
 			
 			if(connection == null) {
 				
-				Class.forName("org.postgresql.Driver"); // carrega o Driver do banco
+				Class.forName("com.mysql.cj.jdbc.Driver"); // carrega o Driver do banco
 				connection = DriverManager.getConnection(url, user, password);
 				connection.setAutoCommit(false);
 				

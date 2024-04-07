@@ -9,16 +9,17 @@
 	<name>curso jsp</name>
 	<description>projeto jdevTreinamentos</description>
 	<dependencies>
-		
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.4.0</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.26</version>
 		</dependency>
 
+
 	</dependencies>
-	
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
