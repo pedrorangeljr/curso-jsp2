@@ -20,15 +20,30 @@ public class DaoUsuario {
 
 	public ModelLogin gravarUsuario(ModelLogin modelLogin) throws Exception {
 
-		String sql = "INSERT INTO modelLogin(email,senha,nome)Values(?,?,?)";
-		PreparedStatement insert = connection.prepareStatement(sql);
+		if (modelLogin.eNovo()) { // grava um novo
 
-		insert.setString(1, modelLogin.getEmail());
-		insert.setString(2, modelLogin.getSenha());
-		insert.setString(3, modelLogin.getNome());
-		insert.execute();
+			String sql = "INSERT INTO modelLogin(email,senha,nome)Values(?,?,?)";
+			PreparedStatement insert = connection.prepareStatement(sql);
 
-		connection.commit();
+			insert.setString(1, modelLogin.getEmail());
+			insert.setString(2, modelLogin.getSenha());
+			insert.setString(3, modelLogin.getNome());
+			insert.execute();
+
+			connection.commit();
+
+		} else { // Atualiza
+
+			String sql = "UPDATE modelLogin SET nome = ?, email = ?, senha = ? WHERE id = " + modelLogin.getId()+ "";
+			PreparedStatement update = connection.prepareStatement(sql);
+
+			update.setString(1, modelLogin.getNome());
+			update.setString(2, modelLogin.getEmail());
+			update.setString(3, modelLogin.getSenha());
+			update.executeUpdate();
+
+			connection.commit();
+		}
 
 		return this.consultarUsuario(modelLogin.getEmail());
 	}

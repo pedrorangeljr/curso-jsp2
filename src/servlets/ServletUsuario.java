@@ -51,6 +51,15 @@ public class ServletUsuario extends HttpServlet {
 				
 			}else {
 				
+				if(modelLogin.eNovo()) {
+					
+					msg = "Gravado com Sucesso!";
+					
+				}else {
+					
+					msg = "Atualizado com Sucesso!";
+				}
+				
 				modelLogin = daoUsuario.gravarUsuario(modelLogin);
 			}
 			
