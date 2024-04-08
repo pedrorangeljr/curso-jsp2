@@ -29,7 +29,7 @@
 			
 			
 				<!-- Card Início -->
-
+                 <jsp:include page="card.jsp"></jsp:include>
 				<!-- Card Fim -->
 
 				<!-- Card2 início -->
