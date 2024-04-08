@@ -30,13 +30,13 @@
 				<div class="card-body">
 
 					<form action="<%=request.getContextPath()%>/ServletUsuario"
-						method="post">
+						method="post" id="formUser">
 
 						<div class="row">
 							<div class="col-md-5 pr-1">
 								<div class="form-group">
 									<label>ID</label> <input type="text" class="form-control"
-										name="id" id="id"  placeholder="" readonly="readonly"
+										name="id" id="id" placeholder="" readonly="readonly"
 										value="${modelLogin.id }">
 								</div>
 							</div>
@@ -68,7 +68,7 @@
 							<div class="col-md-6 pl-1">
 								<div class="form-group">
 									<label>Last Name</label> <input type="text"
-										class="form-control" placeholder="Last Name" >
+										class="form-control" placeholder="Last Name">
 								</div>
 							</div>
 						</div>
@@ -84,13 +84,13 @@
 							<div class="col-md-4 pr-1">
 								<div class="form-group">
 									<label>City</label> <input type="text" class="form-control"
-										placeholder="City" >
+										placeholder="City">
 								</div>
 							</div>
 							<div class="col-md-4 px-1">
 								<div class="form-group">
 									<label>Country</label> <input type="text" class="form-control"
-										placeholder="Country" >
+										placeholder="Country">
 								</div>
 							</div>
 							<div class="col-md-4 pl-1">
@@ -104,7 +104,8 @@
 						<div class="row">
 							<div class="update ml-auto mr-auto">
 
-								<button type="submit" class="btn btn-primary btn-round">Novo</button>
+								<button type="submit" class="btn btn-primary btn-round"
+									onclick="limparForm();">Novo</button>
 								<button type="submit" class="btn btn-success btn-round">cadastrar</button>
 								<button type="submit" class="btn btn-warning btn-round">Editar</button>
 								<button type="button" class="btn btn-danger btn-round">Deletar</button>
@@ -132,6 +133,19 @@
 	</div>
 	<!--   Core JS Files   -->
 	<jsp:include page="script.jsp"></jsp:include>
+
+	<script type="text/javascript">
+	
+		function limparForm() {
+				
+			var elementos = document.getElementById("formUser").elements;
+
+			for (p = 0; p < elementos.length; p++) {
+
+				elementos[p].value = '';
+			} 
+		}
+	</script>
 </body>
 
 </html>
