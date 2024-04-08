@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +25,25 @@ public class ServletUsuario extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		try {
+			
+			String acao = request.getParameter("acao");
+			
+			if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
+				
+				String id = request.getParameter("id");
+				
+				daoUsuario.deletarUser(id);
+				request.setAttribute("msg", "Excluido com Sucesso");
+				
+				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 
 	}
 
