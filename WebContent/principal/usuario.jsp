@@ -31,7 +31,7 @@
 
 					<form action="<%=request.getContextPath()%>/ServletUsuario"
 						method="post" id="formUser">
-						
+
 						<input type="hidden" name="acao" id="acao" value="">
 
 						<div class="row">
@@ -110,7 +110,8 @@
 									onclick="limparForm();">Novo</button>
 								<button type="submit" class="btn btn-success btn-round">cadastrar</button>
 								<button type="submit" class="btn btn-warning btn-round">Editar</button>
-								<button type="button" class="btn btn-danger btn-round" onclick="criarDelete();">Deletar</button>
+								<button type="button" class="btn btn-danger btn-round"
+									onclick="criarDelete();">Deletar</button>
 
 							</div>
 						</div>
@@ -137,22 +138,26 @@
 	<jsp:include page="script.jsp"></jsp:include>
 
 	<script type="text/javascript">
-	
-	   function criarDelete() {
-		   
-		   document.getElementById("formUser").method = 'get';
-		   document.getElementById("acao").value = 'deletar';
-		   document.getElementById("formUser").submit();
-	   }
-	
+		function criarDelete() {
+
+			if (confirm('Deseja realmente excluir os dados ?')) {
+
+				document.getElementById("formUser").method = 'get';
+				document.getElementById("acao").value = 'deletar';
+				document.getElementById("formUser").submit();
+
+			} 
+		
+		}
+
 		function limparForm() {
-				
+
 			var elementos = document.getElementById("formUser").elements;
 
 			for (p = 0; p < elementos.length; p++) {
 
 				elementos[p].value = '';
-			} 
+			}
 		}
 	</script>
 </body>
