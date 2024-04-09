@@ -111,7 +111,7 @@
 								<button type="submit" class="btn btn-success btn-round">cadastrar</button>
 								<button type="submit" class="btn btn-warning btn-round">Editar</button>
 								<button type="button" class="btn btn-danger btn-round"
-									onclick="criarDelete();">Deletar</button>
+									onclick="deletarAjax();">Deletar</button>
 
 							</div>
 						</div>
@@ -138,6 +138,32 @@
 	<jsp:include page="script.jsp"></jsp:include>
 
 	<script type="text/javascript">
+	
+	    function deletarAjax() {
+	    	
+	    	if(confirm('Deseja realmente excluir os dados ?')) {
+	    		
+	    		var urlAction =  document.getElementById("formUser").action;
+	    		var id = document.getElementById("id").value;
+	    		
+	    		$.ajax({
+	    			
+	    			method: "get",
+	    			url: urlAction,
+	    			data: "id=" + id + "&acao=deletarAjax",
+	    			success: function(response) {
+	    				
+	    				limparForm();
+	    				alert(response);
+	    			}
+	    			
+	    		}).fail(function(xhr, status, errorThrown){
+	    			alert('Erro ao deletar usuario por id: ' + xhr.responseText);
+	    		});
+	    	}
+	    	
+	    }
+	    
 		function criarDelete() {
 
 			if (confirm('Deseja realmente excluir os dados ?')) {

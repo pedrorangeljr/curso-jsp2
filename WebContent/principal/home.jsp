@@ -24,12 +24,10 @@
 			<!-- End Navbar -->
 
 			<div class="content">
-			
-			 <h1>Corpo do Sistema</h1>
-			
-			
+
+
 				<!-- Card Início -->
-                 <jsp:include page="card.jsp"></jsp:include>
+				<jsp:include page="card.jsp"></jsp:include>
 				<!-- Card Fim -->
 
 				<!-- Card2 início -->
@@ -42,7 +40,7 @@
 		</div>
 	</div>
 	<!--   Core JS Files   -->
-	 <jsp:include page="script.jsp"></jsp:include>
+	<jsp:include page="script.jsp"></jsp:include>
 </body>
 
 </html>

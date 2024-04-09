@@ -24,23 +24,35 @@ public class ServletUsuario extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
-			
+
 			String acao = request.getParameter("acao");
-			
-			if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
-				
+
+			if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {// deletar normal
+
 				String id = request.getParameter("id");
-				
+
 				daoUsuario.deletarUser(id);
 				request.setAttribute("msg", "Excluido com Sucesso");
+
+				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+				
+			} else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletarAjax")) { // deleta por ajax
+
+				String id = request.getParameter("id");
+
+				daoUsuario.deletarUser(id);
+				
+				response.getWriter().write("Excluido com Sucesso");
+				
+			}else {
 				
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			}
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -64,24 +76,23 @@ public class ServletUsuario extends HttpServlet {
 			modelLogin.setEmail(email);
 			modelLogin.setSenha(senha);
 
-			if(daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
-				
+			if (daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
+
 				msg = "Já existe usuário com o mesmo login, informe outro login";
-				
-			}else {
-				
-				if(modelLogin.eNovo()) {
-					
+
+			} else {
+
+				if (modelLogin.eNovo()) {
+
 					msg = "Gravado com Sucesso!";
-					
-				}else {
-					
+
+				} else {
+
 					msg = "Atualizado com Sucesso!";
 				}
-				
+
 				modelLogin = daoUsuario.gravarUsuario(modelLogin);
 			}
-			
 
 			request.setAttribute("msg", msg);
 			request.setAttribute("modelLogin", modelLogin);
