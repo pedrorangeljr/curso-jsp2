@@ -147,22 +147,55 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de Usuário</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
+						Usuário</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-				
-				Corpo do Modal
-				
+
+					<!-- Corpo do Modal -->
+
+					<div class="input-group no-border">
+						<input type="text" value="" class="form-control" id="nomeBusca" name="nomeBusca"
+							placeholder="Nome">
+						<div class="input-group-append">
+							<button type="button" class="input-group-text"
+								onclick="buscarUsuario();">
+								<i class="nc-icon nc-zoom-split"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table">
+								<thead class=" text-primary">
+									<th>ID</th>
+									<th>Nome</th>
+									<th>E-mail</th>
+									<th>Ver</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Dakota Rice</td>
+										<td>Niger</td>
+										<td>Oud-Turnhout</td>
+										<td class="text-right">$36,738</td>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
 				</div>
 				<div class="modal-footer">
-				
+
 					<button type="button" class="btn btn-secondary btn-round"
 						data-dismiss="modal">fechar</button>
-					
+
 				</div>
 			</div>
 		</div>
@@ -170,6 +203,17 @@
 
 
 	<script type="text/javascript">
+	
+		function buscarUsuario() {
+            
+			var nomeBusca = document.getElementById("nomeBusca").value;
+			
+			if(nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != '') {
+				
+				alert(nomeBusca);
+			}
+		}
+		
 		function deletarAjax() {
 
 			if (confirm('Deseja realmente excluir os dados ?')) {
