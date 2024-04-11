@@ -46,7 +46,20 @@ public class ServletUsuario extends HttpServlet {
 				
 				response.getWriter().write("Excluido com Sucesso");
 				
-			}else {
+			}else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) { // pesquisa nome  por ajax
+
+				String nomeBusca = request.getParameter("nomeBusca");
+
+				//daoUsuario.deletarUser(id);
+				
+				//response.getWriter().write("Excluido com Sucesso");
+				
+				System.out.println(nomeBusca);
+				
+			}
+			
+			
+			else {
 				
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			}
