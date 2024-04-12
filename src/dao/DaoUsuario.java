@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import conexao.SingleConnection;
 import model.ModelLogin;
@@ -46,6 +48,31 @@ public class DaoUsuario {
 		}
 
 		return this.consultarUsuario(modelLogin.getEmail());
+	}
+	
+	/*Consulta usuário por nome para função Ajax*/
+	public List<ModelLogin> consultausuarioList(String nome) throws Exception {
+		
+		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
+		
+		String sql = "SELECT * FROM modelLogin WHERE upper(nome) LIKE upper(?)";
+		PreparedStatement consultar = connection.prepareStatement(sql);
+		consultar.setString(1, "%"+ nome +"%");
+		
+		ResultSet resultado = consultar.executeQuery();
+		
+		while(resultado.next()) {
+			
+			ModelLogin modelLogin = new ModelLogin();
+			
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setNome(resultado.getString("nome"));
+			modelLogin.setEmail(resultado.getString("email"));
+			
+			retorno.add(modelLogin);
+		}
+		
+		return retorno;
 	}
 
 	/* metodo consulta usuario por login */

@@ -1,12 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DaoUsuario;
 import model.ModelLogin;
@@ -50,11 +53,15 @@ public class ServletUsuario extends HttpServlet {
 
 				String nomeBusca = request.getParameter("nomeBusca");
 
-				//daoUsuario.deletarUser(id);
+				List<ModelLogin> dadosJsonUser=  daoUsuario.consultausuarioList(nomeBusca);
 				
-				//response.getWriter().write("Excluido com Sucesso");
+				System.out.println(dadosJsonUser);
 				
-				System.out.println(nomeBusca);
+				ObjectMapper mapper = new ObjectMapper();
+				
+				String json = mapper.writeValueAsString(dadosJsonUser);
+				
+				response.getWriter().write(json);
 				
 			}
 			
