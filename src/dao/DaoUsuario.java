@@ -74,6 +74,30 @@ public class DaoUsuario {
 		
 		return retorno;
 	}
+	
+	/*Metodo consulta usuário por ID*/
+	public ModelLogin consultarUsuarioID(String id) throws Exception {
+
+		ModelLogin modelLogin = new ModelLogin();
+
+		String sql = "SELECT * FROM modelLogin WHERE id = ?";
+		PreparedStatement select = connection.prepareStatement(sql);
+		select.setLong(1, Long.parseLong(id));
+
+		ResultSet resultado = select.executeQuery();
+
+		while (resultado.next()) {
+
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setNome(resultado.getString("nome"));
+			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setSenha(resultado.getString("senha"));
+
+		}
+
+		return modelLogin;
+	}
+	
 
 	/* metodo consulta usuario por login */
 	public ModelLogin consultarUsuario(String email) throws Exception {

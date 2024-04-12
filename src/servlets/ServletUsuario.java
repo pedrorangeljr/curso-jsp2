@@ -40,34 +40,46 @@ public class ServletUsuario extends HttpServlet {
 				request.setAttribute("msg", "Excluido com Sucesso");
 
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
-				
+
 			} else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletarAjax")) { // deleta por ajax
 
 				String id = request.getParameter("id");
 
 				daoUsuario.deletarUser(id);
-				
+
 				response.getWriter().write("Excluido com Sucesso");
-				
-			}else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) { // pesquisa nome  por ajax
+
+			} else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) { // pesquisa nome
+																										// por ajax
 
 				String nomeBusca = request.getParameter("nomeBusca");
 
-				List<ModelLogin> dadosJsonUser=  daoUsuario.consultausuarioList(nomeBusca);
-				
-			    /*Trasnforma uma lista em Json*/
-				
+				List<ModelLogin> dadosJsonUser = daoUsuario.consultausuarioList(nomeBusca);
+
+				/* Trasnforma uma lista em Json */
+
 				ObjectMapper mapper = new ObjectMapper();
-				
+
 				String json = mapper.writeValueAsString(dadosJsonUser);
+
+				response.getWriter().write(json);
+
+			}
+
+			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEdidar")) {
+
+				String id = request.getParameter("id");
+
+				ModelLogin modelLogin = daoUsuario.consultarUsuarioID(id);
 				
-				response.getWriter().write(json); 
+				request.setAttribute("msg", "Usuário em edição");
+				request.setAttribute("modelLogin", modelLogin);
+				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 				
 			}
-			
-			
+
 			else {
-				
+
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			}
 

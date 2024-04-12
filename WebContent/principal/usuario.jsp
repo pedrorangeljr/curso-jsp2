@@ -159,8 +159,8 @@
 					<!-- Corpo do Modal -->
 
 					<div class="input-group no-border">
-						<input type="text" value="" class="form-control" id="nomeBusca" name="nomeBusca"
-							placeholder="Nome">
+						<input type="text" value="" class="form-control" id="nomeBusca"
+							name="nomeBusca" placeholder="Nome">
 						<div class="input-group-append">
 							<button type="button" class="input-group-text"
 								onclick="buscarUsuario();">
@@ -171,21 +171,20 @@
 
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table" id="tabelaResultados">
-								<thead class=" text-primary">
-									<th>ID</th>
-									<th>Nome</th>
-									<th>E-mail</th>
-									<th>Ver</th>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Dakota Rice</td>
-										<td>Niger</td>
-										<td>Oud-Turnhout</td>
-										<td class="text-right">$36,738</td>
-								</tbody>
-							</table>
+							<div style="height: 300px; overflow: scroll">
+								<table class="table" id="tabelaResultados">
+									<thead class=" text-primary">
+										<th>ID</th>
+										<th>Nome</th>
+										<th>E-mail</th>
+										<th>Ver</th>
+									</thead>
+									<tbody>
+										<tr>
+									</tbody>
+								</table>
+							</div>
+							<spam id="totalResultados"></spam>
 						</div>
 					</div>
 
@@ -197,6 +196,7 @@
 						data-dismiss="modal">fechar</button>
 
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -204,41 +204,65 @@
 
 	<script type="text/javascript">
 	
-	     /*Pesquisa por Ajax*/
-		function buscarUsuario() {
+		function verEditar(id) {
             
-			var nomeBusca = document.getElementById("nomeBusca").value;
+			var urlAction = document.getElementById("formUser").action;
 			
-			if(nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != '') {
-				
+			window.location.href = urlAction + '?acao=buscarEdidar&id='+id;
+		}
+
+		/*Pesquisa por Ajax*/
+		function buscarUsuario() {
+
+			var nomeBusca = document.getElementById("nomeBusca").value;
+
+			if (nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != '') {
+
 				var urlAction = document.getElementById("formUser").action;
-				
-				$.ajax({
 
-					method : "get",
-					url : urlAction,
-					data : "nomeBusca=" + nomeBusca + "&acao=buscarUserAjax",
-					success : function(response) {
+				$
+						.ajax(
+								{
 
-						var json =  JSON.parse(response);
-						
-						$('#tabelaResultados > tbody > tr').remove();
-						
-						for(var p = 0; p < json.length; p++) {
-							
-	    		    	    $('#tabelaResultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td>'+json[p].nome+'</td> <td>'+json[p].email+'</td> <td><button onclick="verEditar('+json[p].id+')" type="buuton" class="btn btn-warning btn-round">Ver</button></td></tr>');
-						}
-						
-					}
+									method : "get",
+									url : urlAction,
+									data : "nomeBusca=" + nomeBusca
+											+ "&acao=buscarUserAjax",
+									success : function(response) {
 
-				}).fail(
-						function(xhr, status, errorThrown) {
-							alert('Erro ao usuário usuario por nome: '
-									+ xhr.responseText);
-						});
+										var json = JSON.parse(response);
+
+										$('#tabelaResultados > tbody > tr')
+												.remove();
+
+										for (var p = 0; p < json.length; p++) {
+
+											$('#tabelaResultados > tbody')
+													.append(
+															'<tr> <td>'
+																	+ json[p].id
+																	+ '</td> <td>'
+																	+ json[p].nome
+																	+ '</td> <td>'
+																	+ json[p].email
+																	+ '</td> <td><button onclick="verEditar('
+																	+ json[p].id
+																	+ ')" type="buuton" class="btn btn-warning btn-round">Ver</button></td></tr>');
+										}
+
+										document
+												.getElementById('totalResultados').textContent = 'Resutados: '
+												+ json.length;
+									}
+
+								}).fail(
+								function(xhr, status, errorThrown) {
+									alert('Erro ao usuário usuario por nome: '
+											+ xhr.responseText);
+								});
 			}
 		}
-		 /*Deleta por Ajax*/
+		/*Deleta por Ajax*/
 		function deletarAjax() {
 
 			if (confirm('Deseja realmente excluir os dados ?')) {
