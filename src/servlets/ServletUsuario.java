@@ -55,13 +55,13 @@ public class ServletUsuario extends HttpServlet {
 
 				List<ModelLogin> dadosJsonUser=  daoUsuario.consultausuarioList(nomeBusca);
 				
-				System.out.println(dadosJsonUser);
+			    /*Trasnforma uma lista em Json*/
 				
 				ObjectMapper mapper = new ObjectMapper();
 				
 				String json = mapper.writeValueAsString(dadosJsonUser);
 				
-				response.getWriter().write(json);
+				response.getWriter().write(json); 
 				
 			}
 			

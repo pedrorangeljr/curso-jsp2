@@ -171,7 +171,7 @@
 
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table">
+							<table class="table" id="tabelaResultados">
 								<thead class=" text-primary">
 									<th>ID</th>
 									<th>Nome</th>
@@ -220,7 +220,14 @@
 					data : "nomeBusca=" + nomeBusca + "&acao=buscarUserAjax",
 					success : function(response) {
 
-						alert(response);
+						var json =  JSON.parse(response);
+						
+						$('#tabelaResultados > tbody > tr').remove();
+						
+						for(var p = 0; p < json.length; p++) {
+							
+	    		    	    $('#tabelaResultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td>'+json[p].nome+'</td> <td>'+json[p].email+'</td> <td><button onclick="verEditar('+json[p].id+')" type="buuton" class="btn btn-warning btn-round">Ver</button></td></tr>');
+						}
 						
 					}
 
