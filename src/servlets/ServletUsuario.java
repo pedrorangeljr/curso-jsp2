@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.DaoUsuario;
 import model.ModelLogin;
 
-@WebServlet("/ServletUsuario")
+@WebServlet(urlPatterns = {"/ServletUsuario"})
 public class ServletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -77,6 +77,15 @@ public class ServletUsuario extends HttpServlet {
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 				
 			}
+			/*
+			else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarUser")) { // Lista todos
+				
+				List<ModelLogin> modelLogins = daoUsuario.consultausuarioList();
+				
+				request.setAttribute("msg", "Usuário em edição");
+				request.setAttribute("modelLogin", modelLogins);
+				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
+			}*/
 
 			else {
 
