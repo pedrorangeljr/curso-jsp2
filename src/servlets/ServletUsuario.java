@@ -15,7 +15,8 @@ import dao.DaoUsuario;
 import model.ModelLogin;
 
 @WebServlet(urlPatterns = {"/ServletUsuario"})
-public class ServletUsuario extends HttpServlet {
+public class ServletUsuario extends ServletGenericUtil {
+	
 	private static final long serialVersionUID = 1L;
 
 	private DaoUsuario daoUsuario = new DaoUsuario();
@@ -54,7 +55,7 @@ public class ServletUsuario extends HttpServlet {
 
 				String nomeBusca = request.getParameter("nomeBusca");
 
-				List<ModelLogin> dadosJsonUser = daoUsuario.consultausuarioList(nomeBusca);
+				List<ModelLogin> dadosJsonUser = daoUsuario.consultausuarioList(nomeBusca, super.getUserLogado(request));
 
 				/* Trasnforma uma lista em Json */
 
@@ -70,7 +71,7 @@ public class ServletUsuario extends HttpServlet {
 
 				String id = request.getParameter("id");
 
-				ModelLogin modelLogin = daoUsuario.consultarUsuarioID(id);
+				ModelLogin modelLogin = daoUsuario.consultarUsuarioID(id, super.getUserLogado(request));
 				
 				request.setAttribute("msg", "Usuário em edição");
 				request.setAttribute("modelLogin", modelLogin);
@@ -132,7 +133,7 @@ public class ServletUsuario extends HttpServlet {
 					msg = "Atualizado com Sucesso!";
 				}
 
-				modelLogin = daoUsuario.gravarUsuario(modelLogin);
+				modelLogin = daoUsuario.gravarUsuario(modelLogin, super.getUserLogado(request));
 			}
 
 			request.setAttribute("msg", msg);
