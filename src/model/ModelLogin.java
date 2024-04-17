@@ -10,6 +10,7 @@ public class ModelLogin implements Serializable{
 	private String nome;
 	private String email;
 	private String senha;
+	private String perfil;
 	
 	public boolean eNovo() {
 		
@@ -48,6 +49,14 @@ public class ModelLogin implements Serializable{
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 	
 }

@@ -78,8 +78,17 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<label>Address</label> <input type="text" class="form-control"
-										placeholder="Home Address">
+								    <label>Perfil</label>
+								    
+									<select class="form-control" name="perfil" id="perfil" >
+									    <option disabled="disabled">[SELECIONE O PERFIL]</option>
+									    <option value="ADMIN">ADMIN</option>
+										<option value="GERENTE">GERENTE</option>
+										<option value="AUXILIAR-ADM">AUXILIAR-ADM</option>
+										<option value="ENCARREGADO">ENCARREGADO</option>
+										<option value="FRENTISTA">FRENTISTA</option>
+									</select>
+
 								</div>
 							</div>
 						</div>
@@ -204,12 +213,11 @@
 
 
 	<script type="text/javascript">
-	
 		function verEditar(id) {
-            
+
 			var urlAction = document.getElementById("formUser").action;
-			
-			window.location.href = urlAction + '?acao=buscarEdidar&id='+id;
+
+			window.location.href = urlAction + '?acao=buscarEdidar&id=' + id;
 		}
 
 		/*Pesquisa por Ajax*/

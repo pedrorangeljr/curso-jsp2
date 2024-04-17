@@ -24,25 +24,27 @@ public class DaoUsuario {
 
 		if (modelLogin.eNovo()) { // grava um novo
 
-			String sql = "INSERT INTO modelLogin(email,senha,nome, usuario_id)Values(?,?,?,?)";
+			String sql = "INSERT INTO modelLogin(email,senha,nome, usuario_id, perfil)Values(?,?,?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 
 			insert.setString(1, modelLogin.getEmail());
 			insert.setString(2, modelLogin.getSenha());
 			insert.setString(3, modelLogin.getNome());
 			insert.setLong(4, userLogado);
+			insert.setString(5, modelLogin.getPerfil());
 			insert.execute();
 
 			connection.commit();
 
 		} else { // Atualiza
 
-			String sql = "UPDATE modelLogin SET nome = ?, email = ?, senha = ? WHERE id = " + modelLogin.getId()+ "";
+			String sql = "UPDATE modelLogin SET nome = ?, email = ?, senha = ?, perfil = ? WHERE id = " + modelLogin.getId()+ "";
 			PreparedStatement update = connection.prepareStatement(sql);
 
 			update.setString(1, modelLogin.getNome());
 			update.setString(2, modelLogin.getEmail());
 			update.setString(3, modelLogin.getSenha());
+			update.setString(4, modelLogin.getPerfil());
 			update.executeUpdate();
 
 			connection.commit();
@@ -70,6 +72,7 @@ public class DaoUsuario {
 			modelLogin.setId(resultado.getLong("id"));
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 			
 			retorno.add(modelLogin);
 		}
@@ -185,6 +188,7 @@ public class DaoUsuario {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setEmail(resultado.getString("email"));
 			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 
 		}
 
