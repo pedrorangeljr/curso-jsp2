@@ -32,7 +32,7 @@
 				<div class="card-body">
 
 					<form action="<%=request.getContextPath()%>/ServletUsuario"
-						method="post" id="formUser">
+						method="post" id="formUser" enctype="multipart/form-data">
 
 						<input type="hidden" name="acao" id="acao" value="">
 
@@ -71,40 +71,43 @@
 							</div>
 							<div class="col-md-6 pl-1">
 								<div class="form-group">
-									<label>Last Name</label> <input type="text"
-										class="form-control" placeholder="Last Name">
+									<label>Foto</label><input type="file" class="form-control-file"
+										id="exampleFormControlFile1">
+
 								</div>
 							</div>
+
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-								    <label>Perfil</label>
-								    
-									<select class="form-control" name="perfil" id="perfil" >
-									    <option disabled="disabled">[SELECIONE O PERFIL]</option>
-									    <option value="ADMIN">ADMIN</option>
-										<option value="GERENTE" >GERENTE</option>
-										<option value="AUXILIAR-ADM" >AUXILIAR-ADM</option>
+									<label>Perfil</label> <select class="form-control"
+										name="perfil" id="perfil">
+										<option disabled="disabled">[SELECIONE O PERFIL]</option>
+										<option value="ADMIN">ADMIN</option>
+										<option value="GERENTE">GERENTE</option>
+										<option value="AUXILIAR-ADM">AUXILIAR-ADM</option>
 										<option value="ENCARREGADO">ENCARREGADO</option>
 										<option value="FRENTISTA">FRENTISTA</option>
 									</select>
 
 								</div>
 							</div>
-						 </div>
-						 
-						 <div class="row">
-						   <div class="col-md-12">
-						    
-						    
-						    <input type="radio" name="sexo" id="sexo" value="MASCULINO">Masculino</>
-						    
-						    <input type="radio" name="sexo" id="sexo" value="FEMININO">Feminino</>
-						    
-						   </div>
-						 </div>
-						 <br/>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+
+
+								<input type="radio" class="form-group" name="sexo" id="sexo"
+									value="MASCULINO">Masculino <input type="radio"
+									class="form-group" name="sexo" id="sexo" value="FEMININO">Feminino
+
+
+							</div>
+						</div>
+
+						<br />
 						<div class="row">
 							<div class="col-md-4 pr-1">
 								<div class="form-group">

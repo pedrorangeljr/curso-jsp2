@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.DaoUsuario;
 import model.ModelLogin;
 
+@MultipartConfig
 @WebServlet(urlPatterns = {"/ServletUsuario"})
 public class ServletUsuario extends ServletGenericUtil {
 	
