@@ -76,6 +76,7 @@ public class ServletUsuario extends ServletGenericUtil {
 				request.setAttribute("msg", "Usuário em edição");
 				request.setAttribute("modelLogin", modelLogin);
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+			
 				
 			}
 			/*
@@ -112,6 +113,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
 			String perfil = request.getParameter("perfil");
+			String sexo = request.getParameter("sexo");
 
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
@@ -119,6 +121,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			modelLogin.setEmail(email);
 			modelLogin.setSenha(senha);
 			modelLogin.setPerfil(perfil);
+			modelLogin.setSexo(sexo);
 
 			if (daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
 
@@ -141,6 +144,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			request.setAttribute("msg", msg);
 			request.setAttribute("modelLogin", modelLogin);
 			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+			
 
 		} catch (Exception e) {
 

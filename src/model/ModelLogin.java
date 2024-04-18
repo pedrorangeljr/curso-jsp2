@@ -11,6 +11,7 @@ public class ModelLogin implements Serializable{
 	private String email;
 	private String senha;
 	private String perfil;
+	private String sexo;
 	
 	public boolean eNovo() {
 		
@@ -57,6 +58,14 @@ public class ModelLogin implements Serializable{
 
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 	
 }

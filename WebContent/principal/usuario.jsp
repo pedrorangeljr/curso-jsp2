@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="model.ModelLogin"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,15 +84,27 @@
 									<select class="form-control" name="perfil" id="perfil" >
 									    <option disabled="disabled">[SELECIONE O PERFIL]</option>
 									    <option value="ADMIN">ADMIN</option>
-										<option value="GERENTE">GERENTE</option>
-										<option value="AUXILIAR-ADM">AUXILIAR-ADM</option>
+										<option value="GERENTE" >GERENTE</option>
+										<option value="AUXILIAR-ADM" >AUXILIAR-ADM</option>
 										<option value="ENCARREGADO">ENCARREGADO</option>
 										<option value="FRENTISTA">FRENTISTA</option>
 									</select>
 
 								</div>
 							</div>
-						</div>
+						 </div>
+						 
+						 <div class="row">
+						   <div class="col-md-12">
+						    
+						    
+						    <input type="radio" name="sexo" id="sexo" value="MASCULINO">Masculino</>
+						    
+						    <input type="radio" name="sexo" id="sexo" value="FEMININO">Feminino</>
+						    
+						   </div>
+						 </div>
+						 <br/>
 						<div class="row">
 							<div class="col-md-4 pr-1">
 								<div class="form-group">

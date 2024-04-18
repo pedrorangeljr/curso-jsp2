@@ -24,7 +24,7 @@ public class DaoUsuario {
 
 		if (modelLogin.eNovo()) { // grava um novo
 
-			String sql = "INSERT INTO modelLogin(email,senha,nome, usuario_id, perfil)Values(?,?,?,?,?)";
+			String sql = "INSERT INTO modelLogin(email,senha,nome, usuario_id, perfil, sexo)Values(?,?,?,?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 
 			insert.setString(1, modelLogin.getEmail());
@@ -32,6 +32,7 @@ public class DaoUsuario {
 			insert.setString(3, modelLogin.getNome());
 			insert.setLong(4, userLogado);
 			insert.setString(5, modelLogin.getPerfil());
+			insert.setString(6, modelLogin.getSexo());			
 			insert.execute();
 
 			connection.commit();
@@ -123,6 +124,7 @@ public class DaoUsuario {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setEmail(resultado.getString("email"));
 			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 
 		}
 
@@ -146,6 +148,7 @@ public class DaoUsuario {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setEmail(resultado.getString("email"));
 			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 
 		}
 
@@ -167,6 +170,7 @@ public class DaoUsuario {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setEmail(resultado.getString("email"));
 			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
 
 		}
 
