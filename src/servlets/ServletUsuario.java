@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.DaoUsuario;
 import model.ModelLogin;
 
-@MultipartConfig
+
 @WebServlet(urlPatterns = {"/ServletUsuario"})
 public class ServletUsuario extends ServletGenericUtil {
 	
@@ -116,6 +115,13 @@ public class ServletUsuario extends ServletGenericUtil {
 			String senha = request.getParameter("senha");
 			String perfil = request.getParameter("perfil");
 			String sexo = request.getParameter("sexo");
+			String cep = request.getParameter("cep");
+			String logradouro = request.getParameter("logradouro");
+			String numero = request.getParameter("numero");
+			String bairro = request.getParameter("localidade");
+			String localidade = request.getParameter("localidade");
+			String uf = request.getParameter("uf");
+			
 
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
@@ -124,6 +130,12 @@ public class ServletUsuario extends ServletGenericUtil {
 			modelLogin.setSenha(senha);
 			modelLogin.setPerfil(perfil);
 			modelLogin.setSexo(sexo);
+			modelLogin.setCep(cep);
+			modelLogin.setLogradouro(logradouro);
+			modelLogin.setNumero(numero);
+			modelLogin.setBairro(bairro);
+			modelLogin.setLocalidade(localidade);
+			modelLogin.setUf(uf);
 
 			if (daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
 
