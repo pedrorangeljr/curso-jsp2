@@ -115,6 +115,17 @@
 								</div>
 							</div>
 						</div>
+							<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Renda Mensal</label> <input type="text"
+									 
+										class="form-control" placeholder="" name="rendaMensal"
+										id="rendaMensal" required="required" autocomplete="off" value="${modelLogin.rendaMensal }">
+
+								</div>
+							</div>
+						</div>
 						<br />
 						<div class="row">
 							<div class="col-md-4 pr-1">
@@ -262,6 +273,8 @@
 
 
 	<script type="text/javascript">
+	
+	$("#rendaMensal").maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:"."});
 	
 	$( function() {
 		  

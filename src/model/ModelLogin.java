@@ -20,6 +20,7 @@ public class ModelLogin implements Serializable {
 	private String localidade;
 	private String uf;
 	private Date dataNascimento;
+	private Double rendaMensal;
 
 	public boolean eNovo() {
 
@@ -140,4 +141,13 @@ public class ModelLogin implements Serializable {
 
 	}
 
+	public Double getRendaMensal() {
+		return rendaMensal;
+	}
+
+	public void setRendaMensal(Double rendaMensal) {
+		this.rendaMensal = rendaMensal;
+	}
+
+	
 }

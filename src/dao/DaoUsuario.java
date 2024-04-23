@@ -25,7 +25,7 @@ public class DaoUsuario {
 		if (modelLogin.eNovo()) { // grava um novo
 
 			String sql = "INSERT INTO modelLogin(email,senha,nome,usuario_id,perfil,sexo,cep,logradouro,bairro,"
-					+ "localidade,uf,numero, dataNascimento)Values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "localidade,uf,numero, dataNascimento, rendaMensal)Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 
 			insert.setString(1, modelLogin.getEmail());
@@ -41,6 +41,7 @@ public class DaoUsuario {
 			insert.setString(11, modelLogin.getUf());
 			insert.setString(12, modelLogin.getNumero());
 			insert.setDate(13, modelLogin.getDataNascimento());
+			insert.setDouble(14, modelLogin.getRendaMensal());
 			insert.execute();
 
 			connection.commit();
@@ -48,7 +49,7 @@ public class DaoUsuario {
 		} else { // Atualiza
 
 			String sql = "UPDATE modelLogin SET nome = ?, email = ?, senha = ?, perfil = ?, cep = ?, logradouro = ?,"
-					+ "bairro = ?, localidade = ?, uf = ?, numero = ?, dataNascimento = ? WHERE id = " + modelLogin.getId()+ "";
+					+ "bairro = ?, localidade = ?, uf = ?, numero = ?, dataNascimento = ?, rendaMensal = ? WHERE id = " + modelLogin.getId()+ "";
 			PreparedStatement update = connection.prepareStatement(sql);
 
 			update.setString(1, modelLogin.getNome());
@@ -62,6 +63,7 @@ public class DaoUsuario {
 			update.setString(9, modelLogin.getUf());
 			update.setString(10, modelLogin.getNumero());
 			update.setDate(11, modelLogin.getDataNascimento());
+			update.setDouble(12, modelLogin.getRendaMensal());
 			
 			update.executeUpdate();
 

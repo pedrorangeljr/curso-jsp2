@@ -13,6 +13,7 @@
 		type="text/javascript"></script>
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 	<script src="<%= request.getContextPath() %>/assets/demo/demo.js"></script>
+	<script src="<%= request.getContextPath() %>/assets/js/jquery.maskMoney.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			// Javascript method's body can be found in assets/assets-for-demo/js/demo.js

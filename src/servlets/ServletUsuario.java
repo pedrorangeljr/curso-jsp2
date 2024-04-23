@@ -124,7 +124,11 @@ public class ServletUsuario extends ServletGenericUtil {
 			String localidade = request.getParameter("localidade");
 			String uf = request.getParameter("uf");
 			String dataNascimento = request.getParameter("dataNascimento");
+			String rendaMensal = request.getParameter("rendaMensal");
 			
+			rendaMensal = rendaMensal.replaceAll("\\,", "").replaceAll("R$ ", "");
+			
+			System.out.println(rendaMensal);
 
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
@@ -140,6 +144,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			modelLogin.setLocalidade(localidade);
 			modelLogin.setUf(uf);
 			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento).getTime()));
+			modelLogin.setRendaMensal(Double.parseDouble(rendaMensal));
 
 			if (daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
 
