@@ -1,11 +1,12 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
-public class ModelLogin implements Serializable{
+public class ModelLogin implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String nome;
 	private String email;
@@ -18,43 +19,50 @@ public class ModelLogin implements Serializable{
 	private String bairro;
 	private String localidade;
 	private String uf;
-	
-	
+	private Date dataNascimento;
+
 	public boolean eNovo() {
-		
-		if(this.id == null ) {
-			
-			return true; /*Grava novo*/
-			
-		}else if(this.id != null && this.id > 0) {
-			
+
+		if (this.id == null) {
+
+			return true; /* Grava novo */
+
+		} else if (this.id != null && this.id > 0) {
+
 			return false; // atualiza
 		}
-		
+
 		return id == null;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -123,5 +131,13 @@ public class ModelLogin implements Serializable{
 		this.uf = uf;
 	}
 
-	
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+
+	}
+
 }

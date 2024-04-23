@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -121,6 +123,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			String bairro = request.getParameter("localidade");
 			String localidade = request.getParameter("localidade");
 			String uf = request.getParameter("uf");
+			String dataNascimento = request.getParameter("dataNascimento");
 			
 
 			ModelLogin modelLogin = new ModelLogin();
@@ -136,6 +139,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			modelLogin.setBairro(bairro);
 			modelLogin.setLocalidade(localidade);
 			modelLogin.setUf(uf);
+			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento).getTime()));
 
 			if (daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
 

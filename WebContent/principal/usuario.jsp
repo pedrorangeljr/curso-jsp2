@@ -32,7 +32,7 @@
 				<div class="card-body">
 
 					<form action="<%=request.getContextPath()%>/ServletUsuario"
-						method="post" id="formUser" >
+						method="post" id="formUser">
 
 						<input type="hidden" name="acao" id="acao" value="">
 
@@ -75,27 +75,26 @@
 										class="form-control" placeholder="Last Name">
 								</div>
 							</div>
-							
+
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-								    <label>Perfil</label>
-								    
-									<select class="form-control" name="perfil" id="perfil" >
-									    <option disabled="disabled">[SELECIONE O PERFIL]</option>
-									    <option value="ADMIN">ADMIN</option>
-										<option value="GERENTE" >GERENTE</option>
-										<option value="AUXILIAR-ADM" >AUXILIAR-ADM</option>
+									<label>Perfil</label> <select class="form-control"
+										name="perfil" id="perfil">
+										<option disabled="disabled">[SELECIONE O PERFIL]</option>
+										<option value="ADMIN">ADMIN</option>
+										<option value="GERENTE">GERENTE</option>
+										<option value="AUXILIAR-ADM">AUXILIAR-ADM</option>
 										<option value="ENCARREGADO">ENCARREGADO</option>
 										<option value="FRENTISTA">FRENTISTA</option>
 									</select>
 
 								</div>
 							</div>
-						 </div>
-						 
-						 <div class="row">
+						</div>
+						
+						<div class="row">
 						   <div class="col-md-12">
 						   
 						  
@@ -106,43 +105,59 @@
 						   
 						   </div>
 						 </div>
-						 
-						 <br/>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Data de Nascimento</label> <input type="date"
+										class="form-control" placeholder="" name="dataNascimento"
+										id="dataNascimento" required="required" autocomplete="off">
+
+								</div>
+							</div>
+						</div>
+						<br />
 						<div class="row">
 							<div class="col-md-4 pr-1">
 								<div class="form-group">
-									<label>CEP</label> <input onblur="pesquisaCep();" type="text" class="form-control"
-										placeholder="Cep" name="cep" id="cep" value="${modelLogin.cep }">
+									<label>CEP</label> <input onblur="pesquisaCep();" type="text"
+										class="form-control" placeholder="Cep" name="cep" id="cep"
+										value="${modelLogin.cep }">
 								</div>
 							</div>
 							<div class="col-md-4 px-1">
 								<div class="form-group">
-									<label>Logradouro</label> <input type="text" class="form-control"
-										placeholder="Logradouro" name="logradouro" id="logradouro" value="${modelLogin.logradouro }">
+									<label>Logradouro</label> <input type="text"
+										class="form-control" placeholder="Logradouro"
+										name="logradouro" id="logradouro"
+										value="${modelLogin.logradouro }">
 								</div>
 							</div>
 							<div class="col-md-4 pl-1">
 								<div class="form-group">
-									<label>Número</label> <input type="text"
-										class="form-control" placeholder="número" name="numero" id="numero" value="${modelLogin.numero }">
+									<label>Número</label> <input type="text" class="form-control"
+										placeholder="número" name="numero" id="numero"
+										value="${modelLogin.numero }">
 								</div>
 							</div>
 							<div class="col-md-4 pl-1">
 								<div class="form-group">
-									<label>Bairro</label> <input type="text"
-										class="form-control" placeholder="bairro" name="bairro" id="bairro" value="${modelLogin.bairro }">
+									<label>Bairro</label> <input type="text" class="form-control"
+										placeholder="bairro" name="bairro" id="bairro"
+										value="${modelLogin.bairro }">
 								</div>
 							</div>
 							<div class="col-md-4 pl-1">
 								<div class="form-group">
 									<label>Localidade</label> <input type="text"
-										class="form-control" placeholder="localidade" name="localidade" id="localidade" value="${modelLogin.localidade }">
+										class="form-control" placeholder="localidade"
+										name="localidade" id="localidade"
+										value="${modelLogin.localidade }">
 								</div>
 							</div>
 							<div class="col-md-4 pl-1">
 								<div class="form-group">
-									<label>UF</label> <input type="text"
-										class="form-control" placeholder="uf" name="uf" id="uf" value="${modelLogin.uf }">
+									<label>UF</label> <input type="text" class="form-control"
+										placeholder="uf" name="uf" id="uf" value="${modelLogin.uf }">
 								</div>
 							</div>
 						</div>
@@ -248,32 +263,46 @@
 
 	<script type="text/javascript">
 	
-	    function pesquisaCep() {
-	    	
-	    	var cep = $("#cep").val();
-	    	
-	    	$.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados){
-	    		
-	    		 if (!("erro" in dados)) {
-	    			 
-                     //Atualiza os campos com os valores da consulta.
-                     $("cep").val(dados.cep);
-                     $("#logradouro").val(dados.logradouro);
-                     $("#bairro").val(dados.bairro);
-                     $("#localidade").val(dados.localidade);
-                     $("#uf").val(dados.uf);
-                     
-                 } //end if.
-                 else {
-                	 
-                     //CEP pesquisado não foi encontrado.
-                     limpa_formulário_cep();
-                     alert("CEP não encontrado.");
-                 }
-	    		
-	    	});
-	    }
-	    
+	$( function() {
+		  
+		  $("#dataNascimento").datepicker({
+			    dateFormat: 'dd/mm/yyyy',
+			    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+			    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+			    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+			    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+			    nextText: 'Próximo',
+			    prevText: 'Anterior'
+			});
+	} );
+		function pesquisaCep() {
+
+			var cep = $("#cep").val();
+
+			$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+					function(dados) {
+
+						if (!("erro" in dados)) {
+
+							//Atualiza os campos com os valores da consulta.
+							$("cep").val(dados.cep);
+							$("#logradouro").val(dados.logradouro);
+							$("#bairro").val(dados.bairro);
+							$("#localidade").val(dados.localidade);
+							$("#uf").val(dados.uf);
+
+						} //end if.
+						else {
+
+							//CEP pesquisado não foi encontrado.
+							limpa_formulário_cep();
+							alert("CEP não encontrado.");
+						}
+
+					});
+		}
+
 		function verEditar(id) {
 
 			var urlAction = document.getElementById("formUser").action;

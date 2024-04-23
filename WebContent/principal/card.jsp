@@ -46,7 +46,7 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3 col-md-6 col-sm-6">
+	<!--  <div class="col-lg-3 col-md-6 col-sm-6">
 		<div class="card card-stats">
 			<div class="card-body ">
 				<div class="row">
@@ -123,5 +123,5 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>

@@ -27,7 +27,7 @@
               <p>Cadastro de Usuários</p>
             </a>
           </li>
-          <li>
+           <!-- <li>
             <a href="./map.html">
               <i class="nc-icon nc-pin-3"></i>
               <p>Maps</p>
@@ -62,7 +62,7 @@
               <i class="nc-icon nc-spaceship"></i>
               <p>Upgrade to PRO</p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
