@@ -27,12 +27,13 @@
               <p>Cadastro de Usuários</p>
             </a>
           </li>
-           <!-- <li>
-            <a href="./map.html">
-              <i class="nc-icon nc-pin-3"></i>
-              <p>Maps</p>
+            <li>
+            <a href="<%= request.getContextPath() %>/principal/relatorio.jsp">
+              <i class="nc-icon nc-paper"></i>
+              <p>Relatório Usuário</p>
             </a>
           </li>
+          <!--  
           <li>
             <a href="./notifications.html">
               <i class="nc-icon nc-bell-55"></i>

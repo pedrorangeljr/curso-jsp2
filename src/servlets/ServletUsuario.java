@@ -82,6 +82,21 @@ public class ServletUsuario extends ServletGenericUtil {
 			
 				
 			}
+			
+			else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
+				
+				String dataInicial = request.getParameter("dataInicial");
+				String dataFinal = request.getParameter("dataFinal");
+				
+				System.out.println(dataInicial);
+				System.out.println(dataFinal);
+				
+				request.setAttribute("dataInicial", dataInicial);
+				request.setAttribute("dataFinal", dataFinal);
+				
+				request.getRequestDispatcher("principal/relatorio.jsp").forward(request, response);
+			}
+			
 			/*
 			else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarUser")) { // Lista todos
 				
@@ -145,7 +160,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			modelLogin.setUf(uf);
 			
 			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento).getTime()));
-			modelLogin.setRendaMensal(Double.parseDouble(rendaMensal));
+			modelLogin.setRendaMensal(Double.valueOf(rendaMensal));
 
 			if (daoUsuario.validarLogin(modelLogin.getEmail()) && modelLogin.getId() == null) {
 
