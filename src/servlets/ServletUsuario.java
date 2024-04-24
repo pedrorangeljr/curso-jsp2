@@ -148,8 +148,6 @@ public class ServletUsuario extends ServletGenericUtil {
 			String rendaMensal = request.getParameter("rendaMensal");
 			
 			rendaMensal = rendaMensal.replaceAll("\\,", "").replaceAll("R$ ", "");
-			
-			System.out.println(rendaMensal);
 
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setId(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
