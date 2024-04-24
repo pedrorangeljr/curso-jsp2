@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,8 +61,60 @@
 					</div>
 
 				</form>
+				
+				<br/>
+				
+			<div class="col-md-12" >
+            <div class="card" style="margin-left: -20px;">
+              <div class="card-header">
+                <h4 class="card-title"> Simple Table</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                  
+                    <thead class=" text-primary">
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Nome
+                      </th>
+                       <th>
+                        Email
+                      </th>
+                         <th>
+                        Data Nascimento
+                      </th>
+                    </thead>
+                    
+                    <tbody>
+                    <c:forEach items="${listarUser }" var='ml'>
+                      <tr>
+                        <td>
+                          <c:out value="${ml.id }"></c:out>
+                        </td>
+                        <td>
+                          <c:out value="${ml.nome }"></c:out>
+                        </td>
+                        <td>
+                          <c:out value="${ml.email }"></c:out>
+                        </td>
+                        <td >
+                           <c:out value=""></c:out>
+                        </td>
+                      </tr>
+                      </c:forEach>
+                    </tbody>
+                    
+                  </table>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
 
-			</div>
+		</div>
 			<!-- footer início -->
 
 			<!-- footer fim -->

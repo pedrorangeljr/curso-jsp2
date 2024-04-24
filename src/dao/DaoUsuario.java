@@ -102,13 +102,13 @@ public class DaoUsuario {
 		return retorno;
 	}
 	
-	/*
+	
 	//Metodo que lista todos os usuarios
-	public List<ModelLogin> consultausuarioList() throws Exception {
+	public List<ModelLogin> consultausuarioListRel(Long userLogado) throws Exception {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		
-		String sql = "SELECT * FROM modelLogin";
+		String sql = "select * from modelLogin where useradmin is false and usuario_id = " + userLogado;
 		PreparedStatement consultar = connection.prepareStatement(sql);
 		
 		ResultSet resultado = consultar.executeQuery();
@@ -125,7 +125,7 @@ public class DaoUsuario {
 		}
 		
 		return retorno;
-	}*/
+	}
 	
 	/*Metodo consulta usuário por ID*/
 	public ModelLogin consultarUsuarioID(String id, Long userLogado) throws Exception {

@@ -88,12 +88,13 @@ public class ServletUsuario extends ServletGenericUtil {
 				String dataInicial = request.getParameter("dataInicial");
 				String dataFinal = request.getParameter("dataFinal");
 				
-				System.out.println(dataInicial);
-				System.out.println(dataFinal);
+				if(dataInicial == null || dataInicial.isEmpty() && dataFinal == null || dataFinal.isEmpty()) {
+					
+					request.setAttribute("listarUser", daoUsuario.consultausuarioListRel(super.getUserLogado(request)));
+				}
 				
 				request.setAttribute("dataInicial", dataInicial);
-				request.setAttribute("dataFinal", dataFinal);
-				
+				request.setAttribute("dataFinal", dataFinal);	
 				request.getRequestDispatcher("principal/relatorio.jsp").forward(request, response);
 			}
 			
