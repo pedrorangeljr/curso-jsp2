@@ -93,6 +93,8 @@ public class DaoUsuario {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setEmail(resultado.getString("email"));
 			modelLogin.setPerfil(resultado.getString("perfil"));
+			modelLogin.setDataNascimento(resultado.getDate("dataNascimento"));
+			modelLogin.setRendaMensal(resultado.getDouble("rendaMensal"));
 			
 			retorno.add(modelLogin);
 		}

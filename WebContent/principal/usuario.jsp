@@ -110,7 +110,7 @@
 								<div class="form-group">
 									<label>Data de Nascimento</label> <input type="date"
 										class="form-control" placeholder="" name="dataNascimento"
-										id="dataNascimento" required="required" autocomplete="off">
+										id="dataNascimento" required="required" autocomplete="off" value="${modelLogin.dataNascimento }">
 
 								</div>
 							</div>

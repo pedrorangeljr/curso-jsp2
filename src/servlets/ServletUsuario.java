@@ -143,6 +143,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			modelLogin.setBairro(bairro);
 			modelLogin.setLocalidade(localidade);
 			modelLogin.setUf(uf);
+			
 			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento).getTime()));
 			modelLogin.setRendaMensal(Double.parseDouble(rendaMensal));
 
