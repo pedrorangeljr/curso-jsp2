@@ -28,93 +28,79 @@
 
 				<h2>Relatório de Usuários</h2>
 
-				<form
-					action="<%=request.getContextPath()%>/ServletUsuario"
+				<form action="<%=request.getContextPath()%>/ServletUsuario"
 					method="get" id="formUser">
-				
-				<input type="hidden" name="acao" value="imprimirRelatorioUser">
-                   
+
+					<input type="hidden" name="acao" value="imprimirRelatorioUser">
+
 					<div class="form-row align-items-center">
 
 						<div class="col-md-3 px-1">
 							<div class="form-group">
-								<label>Data Inicial</label> <input type="date" class="form-control"
-								    name="dataInicial" id="dataInicial" 
+								<label>Data Inicial</label> <input type="date"
+									class="form-control" name="dataInicial" id="dataInicial"
 									value="${dataInicial }">
 							</div>
 						</div>
-						
-							<div class="col-md-3 pl-1">
-								<div class="form-group">
-									<label for="exampleInputEmail1">Data Final</label> <input
-										type="date" class="form-control"
-										name="dataFinal" id="dataFinal" value="${dataFinal }">
-								</div>
+
+						<div class="col-md-3 pl-1">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Data Final</label> <input
+									type="date" class="form-control" name="dataFinal"
+									id="dataFinal" value="${dataFinal }">
 							</div>
-							
-								<div class="col-md-4 pl-1">
-								<div class="form-group" style="margin-top: 20px;">
-									<button type="submit" class="btn btn-success btn-round mb-1">Imprimir Relatório</button>
-								</div>
+						</div>
+
+						<div class="col-md-4 pl-1">
+							<div class="form-group" style="margin-top: 20px;">
+								<button type="submit" class="btn btn-success btn-round mb-1">Imprimir
+									Relatório</button>
 							</div>
+						</div>
 
 					</div>
 
 				</form>
-				
-				<br/>
-				
-			<div class="col-md-12" >
-            <div class="card" style="margin-left: -20px;">
-              <div class="card-header">
-                <h4 class="card-title"> Simple Table</h4>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                  
-                    <thead class=" text-primary">
-                      <th>
-                        ID
-                      </th>
-                      <th>
-                        Nome
-                      </th>
-                       <th>
-                        Email
-                      </th>
-                         <th>
-                        Data Nascimento
-                      </th>
-                    </thead>
-                    
-                    <tbody>
-                    <c:forEach items="${listarUser }" var='ml'>
-                      <tr>
-                        <td>
-                          <c:out value="${ml.id }"></c:out>
-                        </td>
-                        <td>
-                          <c:out value="${ml.nome }"></c:out>
-                        </td>
-                        <td>
-                          <c:out value="${ml.email }"></c:out>
-                        </td>
-                        <td >
-                           <c:out value=""></c:out>
-                        </td>
-                      </tr>
-                      </c:forEach>
-                    </tbody>
-                    
-                  </table>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
 
-		</div>
+				<br />
+
+				<div class="col-md-12">
+					<div class="card" style="margin-left: -20px;">
+						<div class="card-header">
+							<h4 class="card-title">Simple Table</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<div style="height: 400px; overflow: scroll;">
+									<table class="table">
+
+										<thead class=" text-primary">
+											<th>ID</th>
+											<th>Nome</th>
+											<th>Email</th>
+											<th>Perfil</th>
+										</thead>
+
+
+										<tbody>
+											<c:forEach items="${listarUser }" var='ml'>
+												<tr>
+													<td><c:out value="${ml.id }"></c:out></td>
+													<td><c:out value="${ml.nome }"></c:out></td>
+													<td><c:out value="${ml.email }"></c:out></td>
+													<td><c:out value="${ml.perfil }"></c:out></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 			<!-- footer início -->
 
 			<!-- footer fim -->
@@ -122,39 +108,55 @@
 	</div>
 	<!--   Core JS Files   -->
 	<jsp:include page="script.jsp"></jsp:include>
-	
+
 	<script type="text/javascript">
-	
-	$( function() {
-		  
-		  $("#dataInicial").datepicker({
-			    dateFormat: 'dd/mm/yyyy',
-			    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-			    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-			    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
-			    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-			    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-			    nextText: 'Próximo',
-			    prevText: 'Anterior'
-			});
-	} );
-	
-	
-	$( function() {
-		  
-		  $("#dataFinal").datepicker({
-			    dateFormat: 'dd/mm/yyyy',
-			    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-			    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-			    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
-			    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-			    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-			    nextText: 'Próximo',
-			    prevText: 'Anterior'
-			});
-	} );
-	
-	
+		$(function() {
+
+			$("#dataInicial")
+					.datepicker(
+							{
+								dateFormat : 'dd/mm/yyyy',
+								dayNames : [ 'Domingo', 'Segunda', 'Terça',
+										'Quarta', 'Quinta', 'Sexta', 'Sábado' ],
+								dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S',
+										'S', 'D' ],
+								dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua',
+										'Qui', 'Sex', 'Sáb', 'Dom' ],
+								monthNames : [ 'Janeiro', 'Fevereiro', 'Março',
+										'Abril', 'Maio', 'Junho', 'Julho',
+										'Agosto', 'Setembro', 'Outubro',
+										'Novembro', 'Dezembro' ],
+								monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr',
+										'Mai', 'Jun', 'Jul', 'Ago', 'Set',
+										'Out', 'Nov', 'Dez' ],
+								nextText : 'Próximo',
+								prevText : 'Anterior'
+							});
+		});
+
+		$(function() {
+
+			$("#dataFinal")
+					.datepicker(
+							{
+								dateFormat : 'dd/mm/yyyy',
+								dayNames : [ 'Domingo', 'Segunda', 'Terça',
+										'Quarta', 'Quinta', 'Sexta', 'Sábado' ],
+								dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S',
+										'S', 'D' ],
+								dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua',
+										'Qui', 'Sex', 'Sáb', 'Dom' ],
+								monthNames : [ 'Janeiro', 'Fevereiro', 'Março',
+										'Abril', 'Maio', 'Junho', 'Julho',
+										'Agosto', 'Setembro', 'Outubro',
+										'Novembro', 'Dezembro' ],
+								monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr',
+										'Mai', 'Jun', 'Jul', 'Ago', 'Set',
+										'Out', 'Nov', 'Dez' ],
+								nextText : 'Próximo',
+								prevText : 'Anterior'
+							});
+		});
 	</script>
 </body>
 

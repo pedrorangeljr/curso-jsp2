@@ -1,8 +1,10 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,12 +122,40 @@ public class DaoUsuario {
 			modelLogin.setId(resultado.getLong("id"));
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setEmail(resultado.getString("email"));
-			
+			modelLogin.setPerfil(resultado.getString("perfil"));
 			retorno.add(modelLogin);
 		}
 		
 		return retorno;
 	}
+	
+	/*Metodo que consulta usuário entre intervalos de Datas*/
+	public List<ModelLogin> consultausuarioListRel(Long userLogado, String dataInicial, String dataFinal) throws Exception {
+		
+		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
+		
+		String sql = "select * from modelLogin where useradmin is false and usuario_id = " + userLogado 
+				+ " and dataNascimento >= ? and dataNascimento <= ?";
+		PreparedStatement consultar = connection.prepareStatement(sql);
+		consultar.setDate(1, new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataInicial).getTime()));
+		consultar.setDate(2, new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataFinal).getTime()));
+		
+		ResultSet resultado = consultar.executeQuery();
+		
+		while(resultado.next()) {
+			
+			ModelLogin modelLogin = new ModelLogin();
+			
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setNome(resultado.getString("nome"));
+			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
+			retorno.add(modelLogin);
+		}
+		
+		return retorno;
+	}
+	
 	
 	/*Metodo consulta usuário por ID*/
 	public ModelLogin consultarUsuarioID(String id, Long userLogado) throws Exception {

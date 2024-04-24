@@ -91,6 +91,11 @@ public class ServletUsuario extends ServletGenericUtil {
 				if(dataInicial == null || dataInicial.isEmpty() && dataFinal == null || dataFinal.isEmpty()) {
 					
 					request.setAttribute("listarUser", daoUsuario.consultausuarioListRel(super.getUserLogado(request)));
+					
+				}else {
+					
+					request.setAttribute("listarUser", daoUsuario
+							.consultausuarioListRel(super.getUserLogado(request), dataInicial, dataFinal));
 				}
 				
 				request.setAttribute("dataInicial", dataInicial);
