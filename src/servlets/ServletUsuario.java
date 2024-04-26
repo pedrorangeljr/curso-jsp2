@@ -7,19 +7,22 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import dao.DaoUsuario;
 import model.ModelLogin;
 
-
-@WebServlet(urlPatterns = {"/ServletUsuario"})
+@WebServlet(urlPatterns = { "/ServletUsuario" })
 public class ServletUsuario extends ServletGenericUtil {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private DaoUsuario daoUsuario = new DaoUsuario();
@@ -58,7 +61,8 @@ public class ServletUsuario extends ServletGenericUtil {
 
 				String nomeBusca = request.getParameter("nomeBusca");
 
-				List<ModelLogin> dadosJsonUser = daoUsuario.consultausuarioList(nomeBusca, super.getUserLogado(request));
+				List<ModelLogin> dadosJsonUser = daoUsuario.consultausuarioList(nomeBusca,
+						super.getUserLogado(request));
 
 				/* Trasnforma uma lista em Json */
 
@@ -75,43 +79,134 @@ public class ServletUsuario extends ServletGenericUtil {
 				String id = request.getParameter("id");
 
 				ModelLogin modelLogin = daoUsuario.consultarUsuarioID(id, super.getUserLogado(request));
-				
+
 				request.setAttribute("msg", "Usuário em edição");
 				request.setAttribute("modelLogin", modelLogin);
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
-			
-				
+
 			}
-			
-			else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
-				
+
+			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
+
 				String dataInicial = request.getParameter("dataInicial");
 				String dataFinal = request.getParameter("dataFinal");
-				
-				if(dataInicial == null || dataInicial.isEmpty() && dataFinal == null || dataFinal.isEmpty()) {
-					
+
+				if (dataInicial == null || dataInicial.isEmpty() && dataFinal == null || dataFinal.isEmpty()) {
+
 					request.setAttribute("listarUser", daoUsuario.consultausuarioListRel(super.getUserLogado(request)));
-					
-				}else {
-					
-					request.setAttribute("listarUser", daoUsuario
-							.consultausuarioListRel(super.getUserLogado(request), dataInicial, dataFinal));
+
+				} else {
+
+					request.setAttribute("listarUser",
+							daoUsuario.consultausuarioListRel(super.getUserLogado(request), dataInicial, dataFinal));
 				}
-				
+
 				request.setAttribute("dataInicial", dataInicial);
-				request.setAttribute("dataFinal", dataFinal);	
+				request.setAttribute("dataFinal", dataFinal);
 				request.getRequestDispatcher("principal/relatorio.jsp").forward(request, response);
+
 			}
-			
+			/* Imprimir relatório em PDF */
+			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirPDF")) {
+
+				String dataInicial = request.getParameter("dataInicial");
+				String dataFinal = request.getParameter("dataFinal");
+
+				// List<ModelLogin> modelLogin =
+				// daoUsuario.consultausuarioListRel(super.getUserLogado(request));
+
+				if (dataInicial == null || dataInicial.isEmpty() && dataFinal == null || dataFinal.isEmpty()) {
+
+					Document documento = new Document();
+
+					response.setContentType("apllication/pdf");
+
+					response.addHeader("Content-Disposition", "inline; filename=" + "usuarios.pdf");
+
+					// Cria o documento
+					PdfWriter.getInstance(documento, response.getOutputStream());
+
+					// Abre o documento -> gera o conteudo
+					documento.open();
+					documento.add(new Paragraph("Lista de usuários"));
+					documento.add(new Paragraph(" ")); // quebra uma linha no PDF
+
+					PdfPTable tabela = new PdfPTable(3);
+					PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
+					PdfPCell col2 = new PdfPCell(new Paragraph("Email"));
+					PdfPCell col3 = new PdfPCell(new Paragraph("Perfil"));
+
+					tabela.addCell(col1);
+					tabela.addCell(col2);
+					tabela.addCell(col3);
+
+					List<ModelLogin> modelLogin = daoUsuario.consultausuarioListRel(super.getUserLogado(request));
+
+					for (int i = 0; i < modelLogin.size(); i++) {
+
+						tabela.addCell(modelLogin.get(i).getNome());
+						tabela.addCell(modelLogin.get(i).getEmail());
+						tabela.addCell(modelLogin.get(i).getPerfil());
+					}
+
+					documento.add(tabela);
+					documento.close();
+
+					documento.close();
+					
+
+				} else {
+
+					Document documento = new Document();
+
+					response.setContentType("apllication/pdf");
+
+					response.addHeader("Content-Disposition", "inline; filename=" + "usuarios.pdf");
+
+					// Cria o documento
+					PdfWriter.getInstance(documento, response.getOutputStream());
+
+					// Abre o documento -> gera o conteudo
+					documento.open();
+					documento.add(new Paragraph("Lista de usuários"));
+					documento.add(new Paragraph(" ")); // quebra uma linha no PDF
+
+					PdfPTable tabela = new PdfPTable(3);
+					PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
+					PdfPCell col2 = new PdfPCell(new Paragraph("Email"));
+					PdfPCell col3 = new PdfPCell(new Paragraph("Perfil"));
+
+					tabela.addCell(col1);
+					tabela.addCell(col2);
+					tabela.addCell(col3);
+
+					List<ModelLogin> modelLogin = daoUsuario.consultausuarioListRel(super.getUserLogado(request),dataInicial, dataFinal);
+
+					for (int i = 0; i < modelLogin.size(); i++) {
+
+						tabela.addCell(modelLogin.get(i).getNome());
+						tabela.addCell(modelLogin.get(i).getEmail());
+						tabela.addCell(modelLogin.get(i).getPerfil());
+					}
+
+					documento.add(tabela);
+					documento.close();
+
+					documento.close();
+				}
+
+			}
 			/*
-			else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarUser")) { // Lista todos
-				
-				List<ModelLogin> modelLogins = daoUsuario.consultausuarioList();
-				
-				request.setAttribute("msg", "Usuário em edição");
-				request.setAttribute("modelLogin", modelLogins);
-				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
-			}*/
+			 * else if(acao != null && !acao.isEmpty() &&
+			 * acao.equalsIgnoreCase("listarUser")) { // Lista todos
+			 * 
+			 * List<ModelLogin> modelLogins = daoUsuario.consultausuarioList();
+			 * 
+			 * request.setAttribute("msg", "Usuário em edição");
+			 * request.setAttribute("modelLogin", modelLogins);
+			 * request.getRequestDispatcher("/principal/usuario.jsp").forward(request,
+			 * response); }
+			 */
 
 			else {
 
@@ -146,7 +241,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			String uf = request.getParameter("uf");
 			String dataNascimento = request.getParameter("dataNascimento");
 			String rendaMensal = request.getParameter("rendaMensal");
-			
+
 			rendaMensal = rendaMensal.replaceAll("\\,", "").replaceAll("R$ ", "");
 
 			ModelLogin modelLogin = new ModelLogin();
@@ -162,7 +257,7 @@ public class ServletUsuario extends ServletGenericUtil {
 			modelLogin.setBairro(bairro);
 			modelLogin.setLocalidade(localidade);
 			modelLogin.setUf(uf);
-			
+
 			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento).getTime()));
 			modelLogin.setRendaMensal(Double.valueOf(rendaMensal));
 
@@ -187,7 +282,6 @@ public class ServletUsuario extends ServletGenericUtil {
 			request.setAttribute("msg", msg);
 			request.setAttribute("modelLogin", modelLogin);
 			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
-			
 
 		} catch (Exception e) {
 
